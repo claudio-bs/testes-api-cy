@@ -44,7 +44,8 @@ describe('Testes da Funcionalidade Usuários', () => {
      });
 
      it('Deve validar um usuário com email inválido', () => {
-          cy.cadastrarUsuario(token, "Ciclano de Fulano", "beltrano@qa.com.br", "teste", "false")
+          let usuario = `usuario` + `${Math.floor(Math.random() * 100000000)}`
+          cy.cadastrarUsuario(token, usuario, "beltrano@qa.com.br", "teste", "false")
                .then((response) => {
                     expect(response.status).to.equal(400)
                     expect(response.body.message).to.equal("Este email já está sendo usado")
@@ -52,31 +53,43 @@ describe('Testes da Funcionalidade Usuários', () => {
      })
 
      it('Deve editar um usuário previamente cadastrado', () => {
-          cy.request({
+          let usuario = `usuario` + `${Math.floor(Math.random() * 100000000)}`
+          let email = `${usuario}@ebac.com.br`
+          cy.cadastrarUsuario(token, usuario, email, "teste", "false")
+          .then(response => {
+               let id = response.body._id
+               cy.request({
                method: 'PUT',
-               url: 'usuarios/j67ftzu1Ckk9XwPo',
+               url: `usuarios/${id}`,
                headers: { authorization: token },
                body: {
-                    "nome": "José da Silva Ferreira",
-                    "email": "qa_jose-santos@ebac.com.br",
+                    "nome": "Usuário Editado",
+                    "email": email,
                     "password": "teste",
                     "administrador": "false"
                }
-          }).then((response) => {
+               }).then((response) => {
                expect(response.status).to.equal(200)
                expect(response.body.message).to.equal("Registro alterado com sucesso")
+               })
           }) 
      });
      
      it('Deve deletar um usuário previamente cadastrado', () => {
-           cy.request({
-               method: "DELETE",
-               url: "usuarios/DVI1f7ExnbsuUruF",
-               headers: { authorization: token }
-           }).then((response) => {
-               expect(response.status).to.equal(200)
-               expect(response.body.message).to.equal("Registro excluído com sucesso")
-           })
+          let usuario = `usuario` + `${Math.floor(Math.random() * 100000000)}`
+          let email = `${usuario}@ebac.com.br`
+          cy.cadastrarUsuario(token, usuario, email, "teste", "false")
+          .then(response => {
+               let id = response.body._id
+               cy.request({
+                    method: "DELETE",
+                    url: `usuarios/${id}`,
+                    headers: { authorization: token }
+                }).then((response) => {
+                    expect(response.status).to.equal(200)
+                    expect(response.body.message).to.equal("Registro excluído com sucesso")
+                })
+          })  
      });
 });
 
