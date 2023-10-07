@@ -43,7 +43,7 @@ describe('Testes da Funcionalidade Usuários', () => {
           })
      });
 
-     it.only('Deve validar um usuário com email inválido', () => {
+     it('Deve validar um usuário com email inválido', () => {
           cy.cadastrarUsuario(token, "Ciclano de Fulano", "beltrano@qa.com.br", "teste", "false")
                .then((response) => {
                     expect(response.status).to.equal(400)
@@ -52,11 +52,31 @@ describe('Testes da Funcionalidade Usuários', () => {
      })
 
      it('Deve editar um usuário previamente cadastrado', () => {
-          //TODO: 
+          cy.request({
+               method: 'PUT',
+               url: 'usuarios/j67ftzu1Ckk9XwPo',
+               headers: { authorization: token },
+               body: {
+                    "nome": "José da Silva Ferreira",
+                    "email": "qa_jose-santos@ebac.com.br",
+                    "password": "teste",
+                    "administrador": "false"
+               }
+          }).then((response) => {
+               expect(response.status).to.equal(200)
+               expect(response.body.message).to.equal("Registro alterado com sucesso")
+          }) 
      });
      
      it('Deve deletar um usuário previamente cadastrado', () => {
-          //TODO: 
+           cy.request({
+               method: "DELETE",
+               url: "usuarios/DVI1f7ExnbsuUruF",
+               headers: { authorization: token }
+           }).then((response) => {
+               expect(response.status).to.equal(200)
+               expect(response.body.message).to.equal("Registro excluído com sucesso")
+           })
      });
 });
 
