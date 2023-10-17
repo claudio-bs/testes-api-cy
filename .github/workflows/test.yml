@@ -21,7 +21,7 @@ jobs:
             with:
                 install-command: npm install
                 browser: chrome
-                start: npm start
+                start: npm run cy:run-ci
           - name: Publish Report
             uses: peaceiris/actions-github-pages@v3.1.12
             with:
