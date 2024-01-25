@@ -2,13 +2,13 @@ name: EBAC CI
 
 on:
     push:
-        branches: [ main ]
+        branches: [ ci-cbs ]
 
     workflow_dispatch:
 
 jobs:
-    cypress:
-        runs-on: windows-latest
+    test:
+        runs-on: ubuntu-latest
 
         steps:
           - uses: actions/checkout@v4.1.0
