@@ -8,12 +8,11 @@ module.exports = defineConfig({
     projectId: 'ghddgz',
     reporter: 'mochawesome',
     reporterOptions: {
-    reportDir: 'mochawesome-report',
-    overwrite: false,
-    reportFilename: "index.html",
-    html: true,
-    json: false,
-  },
+      reportDir: 'mochawesome-report',
+      overwrite: false,
+      html: false,
+      json: true,
+    },
   },
 });
 
