@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2024-01-30T13:22:06.685Z",
-    "end": "2024-01-30T13:22:06.750Z",
-    "duration": 65,
+    "start": "2024-01-30T14:22:48.117Z",
+    "end": "2024-01-30T14:22:48.188Z",
+    "duration": 71,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "5803190c-c69e-492e-8eba-2f4d51f139f4",
+      "uuid": "b257a285-2dde-47f5-b1cf-997d60c93ba1",
       "title": "",
       "fullFile": "cypress\\e2e\\login.cy.js",
       "file": "cypress\\e2e\\login.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "fc8ffbdb-a160-4514-85b5-bbe7a7daf5f0",
+          "uuid": "9f6ec9f8-1705-4004-b740-028151cb8e59",
           "title": "Login",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Deve fazer login com sucesso",
               "fullTitle": "Login Deve fazer login com sucesso",
               "timedOut": null,
-              "duration": 42,
+              "duration": 49,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.request({\n  method: 'POST',\n  url: 'login',\n  body: {\n    \"email\": \"fulano@qa.com\",\n    \"password\": \"teste\"\n  }\n}).then(response => {\n  expect(response.status).to.equal(200);\n  expect(response.body.message).to.equal('Login realizado com sucesso');\n  cy.log(response.body.authorization);\n});",
               "err": {},
-              "uuid": "839ff447-4b2d-472d-98a9-ad4e824360d6",
-              "parentUUID": "fc8ffbdb-a160-4514-85b5-bbe7a7daf5f0",
+              "uuid": "e44841e5-7b60-48ae-bf97-4532cbf5bad2",
+              "parentUUID": "9f6ec9f8-1705-4004-b740-028151cb8e59",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "839ff447-4b2d-472d-98a9-ad4e824360d6"
+            "e44841e5-7b60-48ae-bf97-4532cbf5bad2"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 42,
+          "duration": 49,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
